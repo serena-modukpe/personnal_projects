@@ -1,0 +1,69 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+{% block container %}
+
+   <section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Mes prescriptions </h5>
+          <table class="myTable table table-bordered table-responsive" id="table_prescriptions">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">N°</th>
+                        <th scope="col" class="text-center">Quantité</th>
+                        <th scope="col" class="text-center">Possologie</th>
+                        <th scope="col" class="text-center">Medicament</th>
+                        <th scope="col" class="text-center">Categorie prescription</th>
+                        
+              </tr>
+            </thead>
+
+            <tbody>
+                {% for item in prescriptions %}
+              
+
+              
+              <tr>
+                <td scope="row" class="text-center">{{ forloop.counter }}</td>
+                <td >{{ item.quantite }}</td>
+                <td >{{ item.possologie }}</td>
+                <td >{{ item.medicament }}</td>
+                <td >{{ item.categorie_prescription }}</td>
+                
+                
+              </tr>
+         
+              
+              {% endfor %}
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+   </section>
+   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script> 
+
+   <script>
+    $(document).ready(function () {
+          if(window.navigator.language == 'fr-FR'){
+              var table = $('#table_prescriptions').DataTable({
+                  lengthMenu: [5,10],
+                  language: {
+                  url: "{% static 'assets_back/js/dataTablesFrench.js' %}"
+                  }
+              });
+          } else {
+              var table = $('#table_prescriptions').DataTable({
+                  lengthMenu: [5,10],
+              });
+          }
+      });
+  </script>
+
+{% load sweetify %}
+{% sweetify %}
+    
+{% endblock %}

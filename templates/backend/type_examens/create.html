@@ -1,0 +1,33 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% load static %}
+{% block container %}
+<section class="section">
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Ajouter un type d'examen  </h5>
+        <div class="container">
+        <div class="row">
+            <form action="{% url 'type_examens.store' %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="Libellé"><b>Libellé</b><i class='text-danger'>*</i></label>
+                    <input type="text" class="form-control" id="libelle" name="libelle" placeholder="">
+                  </div>
+                  <div class="mb-3">
+                    <label for="description"><b>Description</b><i class='text-danger'>*</i></label>
+                    <textarea name="description" id="description" cols="10" rows="5" class="form-control"></textarea>
+                  </div>
+                
+                
+                  <div class="mb-3">
+                    <button class="btn btn-primary ">Enregistrer</button>
+                    <a href="{% url 'type_examens.index' %}" class="btn btn-danger">Retour</a>
+                  </div>
+                </fieldset>
+                </div>
+              </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+{% block container %}
+
+   <section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Dossiers des patients 
+            <a href="{% url 'dossierpatients.create' %}" class="btn btn-sm btn-primary">Ajouter</a> 
+          
+            <a href="{% url 'consultationpatients.consultation_patients' %}" class="btn btn-sm btn-danger">Retour</a>
+          </div>
+          </h5>
+          <table class="myTable table table-bordered  table-responsive" id="table_dossierpatients">
+            <thead>
+              <tr>
+                <th scope="col">N</th>
+                        <th scope="col" class="text-center">Numero</th>
+                        <th scope="col" class="text-center">nom</th>
+                        <th scope="col" class="text-center">prénoms</th>
+                        <th scope="col" class="text-center">Actions</th>    
+                
+              </tr>
+            </thead>
+
+            <tbody>
+                {% for item in dossierpatients %}
+              <tr>
+                <td scope="row">{{ forloop.counter }}</th>
+                <td>{{ item.numero}}</td>
+                <td>{{ item.users.last_name }}</td>
+                <td>{{ item.users.first_name }}</td>
+                
+                <td>
+
+                    <a href="{% url 'dossierpatients.dossier' %}" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i></a>
+
+                    <a href="{% url 'dossierpatients.details' item.id %}" class="btn btn-warning btn-sm"><i class="bi bi-list-ul"></i></a>
+
+                    <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-calendar-check"></i></a>
+
+                    <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal_{{item.id}}"><i class="bi bi-trash"></i></a>
+                  
+                    
+                  <!-- Modal -->
+<div class="modal fade" id="exampleModal_{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{item.id}}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel_{{ item.id }}">Avertissement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        voulez-vous supprimer le dossier de {{ item.personnes.nom }} ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <a href="{% url 'dossierpatients.delete' item.id %}" class="btn btn-danger"><i class="bi bi-trash"></i>oui</a>
+      </div>
+    </div>
+  </div>
+</div>
+    
+                </td>
+                
+              </tr>
+              
+              {% endfor %}
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+   </section>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script> 
+
+   <script>
+   $(document).ready(function () {
+          if(window.navigator.language == 'fr-FR'){
+              var table = $('#table_dossierpatients').DataTable({
+                  lengthMenu: [5,10],
+                  language: {
+                  url: "{% static 'assets_back/js/dataTablesFrench.js' %}"
+                  }
+              });
+          } else {
+              var table = $('#table_dossierpatients').DataTable({
+                  lengthMenu: [5,10],
+              });
+          }
+      });
+  </script>
+
+{% load sweetify %}
+{% sweetify %}
+    
+{% endblock %}

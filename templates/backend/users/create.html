@@ -1,0 +1,71 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+
+{% block container %}
+<section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Ajouter un utilisateur</h5>
+                <form action="{% url 'users.store' %}"  method="POST">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        
+                        <div class="col-6 mb-3" >
+                            <label for="name" class="mb-2"><b>Nom</b><i class='text-danger'>*</i></label>
+                            <input type="text" class="form-control" style="height: 45px;border-radius:10px" name="last_name">
+                        </div>
+
+                        <div class="col-6 mb-3" >
+                            <label for="name" class="mb-2"><b>Prénoms</b><i class='text-danger'>*</i></label>
+                            <input type="text" class="form-control" style="height: 45px;border-radius:10px" name="first_name">
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label for="email" class="mb-2"><b>Email</b><i class='text-danger'>*</i></label>
+                            <input type="email" class="form-control"  style="height: 45px; border-radius:10px" name="email">
+                        </div>
+
+                        <div class="col-6 mb-3" >
+                            <label for="name" class="mb-2"><b>Téléphone</b><i class='text-danger'>*</i></label>
+                            <input type="text" class="form-control" style="height: 45px;border-radius:10px" name="telephone">
+                        </div>
+
+                        <div class="col-6 mb-3" >
+                            <label for="name" class="mb-2"><b>Adresse</b><i class='text-danger'>*</i></label>
+                            <input type="text" class="form-control" style="height: 45px;border-radius:10px" name="adresse">
+                        </div>
+<!--
+                        <div class="col-12 mb-3">
+                            <label for="ddn" class="mb-2">Date de naissance</label>
+                            <input type="date" class="form-control border-0 bg-light px-4"  style="height: 45px; border-radius:10px" name="ddn">
+                        </div>
+                    -->
+                        <div class="col-6 mb-3">
+                            <label for="password1" class="mb-2"><b>Password</b><i class='text-danger'>*</i></label>
+                            <input type="password" class="form-control"  style="height: 45px; border-radius:10px" name="password">
+                        </div>
+
+
+                        <div class="col-md-6 mb-3">
+                            <label for="roles" class="mb-2"><b>Rôles</b><i class='text-danger'>*</i></label>
+                            <select name="roles" id="roles" class="form-control" style="height: 45px; border-radius:10px" required>
+                                <option value="">Selectionner un rôle</option>
+                                {% for item in roles %}
+                                <option value="{{ item.id }}"> {{ item.libelle }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary " type="submit" style="border-radius:10px" >Enregistrer</button>
+                            <a href="{% url 'users.index' %}" class="btn btn-danger">Retour</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

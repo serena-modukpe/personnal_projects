@@ -1,0 +1,61 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+{% block container %}
+   <section>
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Dossier</h5>
+            <div class="table-responsive">
+              <table class="myTable table table-bordered" id="tablepatient">
+                <thead>
+                  <tr>
+                    <th scope="col"class="text-center">N</th>
+                    <th scope="col"class="text-center">Numero</th>
+                    <th scope="col"class="text-center">Nom et prénom</th>
+                    
+    
+                    <th scope="col" class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in dossierpatients %}
+                  <tr>
+                    <td scope="row"class="text-center" >{{ forloop.counter }}</td>
+                    <td class="text-center" >{{ item.numero }}</td>
+                    <td  class="text-center">{{ item.users.last_name }} {{ item.users.first_name }}</td>
+                   
+                    <td class="text-center"><a href="{% url 'dossierpatients.liste_dossiers' item.id  %}" class="btn btn-success btn-sm"><i class="bi bi-eye"></i></a></td>
+                    
+                  </tr>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </section>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script>
+   <script>
+    $(document).ready(function () {
+       if(window.navigator.language == 'fr-FR'){
+           var table = $('# tablepatient').DataTable({
+               lengthMenu: [5,10],
+               language: {
+               url: "{% static 'assets_back/js/dataTablesFrench.js' %}"
+               }
+           });
+       } else {
+           var table = $('# tablepatient').DataTable({
+               lengthMenu: [5,10],
+           });
+       }
+   });
+</script>
+{% load sweetify %}
+{% sweetify %}
+{% endblock %}

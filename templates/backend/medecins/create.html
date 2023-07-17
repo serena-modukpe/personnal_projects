@@ -1,0 +1,70 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container%}
+
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Ajouter un médecin</h2>
+        <form action="{% url 'medecins.store' %}" method="POST">
+            {% csrf_token %}
+
+
+            <div class="card-body mt-3">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-6 mb-3" >
+                        <label for="name" class="mb-2"><b>Nom</b><i class='text-danger'>*</i></label>
+                        <input type="text" class="form-control" style="height: 45px;border-radius:10px" name="nom">
+                    </div>
+
+                    <div class="col-6 mb-3" >
+                        <label for="name" class="mb-2"><b>Prénoms</b><i class='text-danger'>*</i></label>
+                        <input type="text" class="form-control" style="height: 45px;border-radius:10px" name="prenom">
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <label for="email" class="mb-2"><b>Email</b><i class='text-danger'>*</i></label>
+                        <input type="email" class="form-control"  style="height: 45px; border-radius:10px" name="email">
+                    </div>
+
+                    <div class="col-6 mb-3" >
+                        <label for="name" class="mb-2"><b>Téléphone</b><i class='text-danger'>*</i></label>
+                        <input type="text" class="form-control" style="height: 45px;border-radius:10px" name="telephone">
+                    </div>
+
+                    <div class="col-6 mb-3" >
+                        <label for="name" class="mb-2"><b>Adresse</b><i class='text-danger'>*</i></label>
+                        <input type="text" class="form-control" style="height: 45px;border-radius:10px" name="adresse">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="name"><b>Personnes</b><i class='text-danger'>*</i></label>
+                        <select name="personnes" id="personnes" class="form-control" required>
+                            <option value="personnes">Selectionner une personne</option>
+                            {% for item in personnes %}
+                            <option value="{{ item.id }}">{{ item.nom }}  {{ item.prenoms }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                   
+                    
+                    <div class="col-12 mb-3">
+                        <label for="specialites"><b>Spécialités</b><i class='text-danger'>*</i></label>
+                        <select name="specialites" id="specialites" class="form-control" required>
+                            <option value="specialites">Selectionner une spécialité</option>
+                            {% for item in specialites %}
+                            <option value="{{ item.id }}">{{ item.libelle }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary">Ajouter</button>
+                        <a href="{% url 'medecins.index' %}" class="btn btn-danger">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

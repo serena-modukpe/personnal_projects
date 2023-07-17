@@ -1,0 +1,30 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+{% block container %}
+
+    <h2>Editer un roles</h2>
+    <div class="container">
+        <div class="row">
+            <form action="{% url 'habilitations.update' habilitations.id %}" method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                  <label for="libelle">Libellé</label>
+                  <input type="text" class="form-control" id="libelle" name="libelle" style="height: 45px; border-radius:10px" placeholder="" value="{{habilitations.libelle}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" style="height: 45px; border-radius:10px" name="description" id="description">{{habilitations.description}}</textarea>
+                </div>
+
+                <div class="">
+                  <button class="btn btn-warning btn-sm">Modifier</button>
+                </div>
+
+              </form>
+        </div>
+      </div>
+    
+{% endblock %}
+   

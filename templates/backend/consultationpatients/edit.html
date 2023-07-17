@@ -1,0 +1,67 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% block container %}
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Modifier consultation</h2>
+        <form action="{% url 'consultationpatients.update' consultationpatients.id %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="observation">Observation</label>
+                           <input type="text"  name="observation" class="form-control" id="observation"  value="{{ consultationpatients.observation }}">  
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="consultations">Consultations</label>
+                            <select name="consultations" class="form-control">
+                                <optgroup label="Valeur par défaut">
+                                    <option value="{{ consultationpatients.consultations.id }}">{{ consultationpatients.consultations.libelle }}</option>
+                                </optgroup>
+                                <optgroup label="Valeurs disponibles">
+                                    {% for item in consultations %}
+                                    <option value="{{ item.id }}">{{ item.libelle }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div><br/>
+
+
+
+             
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="dossierpatients">Dossierpatients</label>
+                            <select name="dossierpatients" class="form-control">
+                               
+                                <optgroup label="Valeurs disponibles">
+                                    {% for item in dossierpatients %}
+                                    <option value="{{ item.id }}">{{ item.numero }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div><br/>
+
+
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <button class="btn btn-primary">Modifier</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

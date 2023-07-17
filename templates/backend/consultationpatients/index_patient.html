@@ -1,0 +1,77 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+{% block container %}
+
+   <section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Mes consultations </h5>
+          <div class="table-responsive">
+            <table class=" myTable table table-bordered" id="table_patient">
+              <thead>
+                  <tr>
+                          <th scope="col" class="text-center">N</th>
+                          
+                          <th scope="col" class="text-center">Nom et Prénoms</th>
+                          <th scope="col" class="text-center">Consultations</th>
+                          <th scope="col" class="text-center">Observation</th>
+                          <th scope="col" class="text-center">Date d'enregistrement</th>
+                          
+                  
+                  </tr>
+              </thead>
+  
+              <tbody>
+                  {% for item in consultationpatients %}
+                  
+                 
+  
+                
+  
+                <tr>
+                  <td scope="row" class="text-center">{{ forloop.counter }}</td>
+                  
+                  <td class="text-center">{{ item.dossierpatients.users.last_name}} {{ item.dossierpatients.users.first_name}}</td>
+                  <td class="text-center">{{ item.consultations.libelle }}</td>
+                  <td class="text-center">{{ item.observation}}</td>
+                  <td class="text-center">{{ item.created_at }}</td>
+                  
+                  
+                
+                </tr>
+               
+                {% endfor %}
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+   </section>
+   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script>
+
+   <script>
+    $(document).ready(function () {
+          if(window.navigator.language == 'fr-FR'){
+              var table = $('#table_patient').DataTable({
+                  lengthMenu: [5,10],
+                  language: {
+                  url: "{% static 'assets_back/js/dataTablesFrench.js' %}"
+                  }
+              });
+          } else {
+              var table = $('#table_patient').DataTable({
+                  lengthMenu: [5,10],
+              });
+          }
+      });
+  </script>
+
+{% load sweetify %}
+{% sweetify %}
+    
+{% endblock %}

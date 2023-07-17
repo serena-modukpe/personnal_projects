@@ -1,0 +1,67 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container%}
+
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Rendez-vous</h2>
+        <form action="{% url 'rendezvous.store' %}" method="POST">
+            {% csrf_token %}
+
+
+            <div class="card-body mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="users"><b>Personnes</b><i class='text-danger'>*</i></label>
+                        <select name="users" id="users" class="form-control" required>
+                            <option value="users">Selectionner un patient</option>
+                            {% for item in users %}
+                            <option value="{{ item.id }}">{{ item.last_name }}  {{ item.first_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                   
+                    
+                    <div class="col-md-12 mb-3">
+                        <label for="specialites"><b>Spécialités</b><i class='text-danger'>*</i></label>
+                        <select name="specialites" id="specialites" class="form-control" required>
+                            <option value="specialites">Selectionner une spécialité</option>
+                            {% for item in specialites %}
+                            <option value="{{ item.id }}">{{ item.libelle }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="statuts"><b>Statuts</b></label>
+                        <select name="statut" id="statut" class="form-control" required>
+                            <option value="">Selectionner un statut</option>
+                            {% for item in statut %}
+                            <option value="{{ item.id }}">{{ item.libelle }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+
+                    <div class="col-md-12 mb-3">
+                        <label for="agendas"><b>Agendas</b><i class='text-danger'>*</i></label>
+                        <select name="agendas" id="agendas" class="form-control" required>
+                            <option value="agendas">Selectionner un agenda</option>
+                            {% for item in agendas %}
+                            <option value="{{ item.id }}">{{ item.jours.date }} {{ item.heures.heure }} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary">Ajouter</button>
+                        <a href="{% url 'rendezvous.index' %}" class="btn btn-danger">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

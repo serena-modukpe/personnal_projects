@@ -1,0 +1,43 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container%}
+
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Dossier de {{ rendezvous.users.last_name }} {{ rendezvous.users.first_name }}  
+                <button class="btn btn-primary">Ajouter</button>
+                <a href="{% url 'rendezvous.liste_patients' %}" class="btn btn-danger">Retour</a>
+        </h2>
+        <form action="{% url 'dossierpatients.dossier' %}" method="POST">
+            {% csrf_token %}
+
+
+            <div class="card-body mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="users">Personnes</label>
+                        <select name="users" class="form-control">
+                           
+                                <option value="{{ patient.id }}">{{ patient.last_name}}  {{ patient.first_name}}</option>
+                            
+                        </select>
+                    </div>
+                   
+                    
+                    <div class="col-md-12 mb-3">
+                        <label for="numero">Numero</label>
+                        <input type="text" name="numero"  id="numero" class="form-control" style="height: 45px; border-radius:10px" required>
+                
+                    </div>
+
+                        <div class="col-md-3">
+                            <button class="btn btn-primary">enregistrer</button>
+                        </div>
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

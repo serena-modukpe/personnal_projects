@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- head -->
+	{% include 'frontend/inc/head.html' %}
+<!-- end head -->
+<body>
+	<!-- Spinnerstart -->
+		{% include 'frontend/inc/spinner.html' %}
+	<!-- endspinner -->
+
+	<!-- Topbar -->
+		{% include 'frontend/inc/topbar.html' %}
+	<!-- endTopbar -->
+
+	<!-- navbar -->
+		{% include 'frontend/inc/navbar.html' %}
+	<!-- endnavbar -->
+
+	<!-- Full Screen Search Start -->
+    	{% include 'frontend/inc/fullscreen.html' %}
+    <!-- Full Screen Search End -->
+
+	<!-- block -->
+	{% block container %}
+	
+	{% endblock %}
+	<!-- endblock -->
+
+	<!-- footer -->
+	{% include 'frontend/inc/footer.html' %}
+	<!-- endfooter -->
+
+	<!-- Back to Top -->
+	<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+	
+	<!-- scriptSJS -->
+	{% include 'frontend/inc/scriptsJS.html' %}
+	<!-- endscriptsJS -->
+	
+
+
+</body>
+</html>

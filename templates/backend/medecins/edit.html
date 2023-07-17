@@ -1,0 +1,94 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% block container %}
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Modifier un medecin</h2>
+        <form action="{% url 'medecins.update' medecins.id %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="container">
+
+
+                <div class="col-6 mb-3" >
+                    <label for="name" class="mb-2">Nom</label>
+                    <input type="text" class="form-control " style="height: 45px;border-radius:10px" name="nom"  value="{{ medecins.nom }}">
+                </div>
+
+                <div class="col-6 mb-3" >
+                    <label for="prenoms" class="mb-2">Prénoms</label>
+                    <input type="text" class="form-control " style="height: 45px;border-radius:10px" name="prenom"  value="{{ medecins.prenom  }}">
+                </div>
+
+                <div class="col-6 mb-3">
+                    <label for="email" class="mb-2">Email</label>
+                    <input type="email" class="form-control"  style="height: 45px; border-radius:10px" name="email"  value="{{ medecins.email }}">
+                </div>
+
+                <div class="col-6 mb-3">
+                    <label for="telephone" class="mb-2">Telephone</label>
+                    <input type="text" class="form-control "  style="height: 45px; border-radius:10px" name="telephone"  value="{{ medecins.telephone }}">
+                </div>
+
+                <div class="col-6 mb-3">
+                    <label for="adresse" class="mb-2">Adresse</label>
+                    <input type="adresse" class="form-control "  style="height: 45px; border-radius:10px" name="adresse"  value="{{ medecins.adresse }}">
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <div class="form-group">
+                            <label for="personnes">Personnes</label>
+                            <select name="personnes" class="form-control">
+                                <optgroup label="Personnes">
+                                    <option value="{{ medecins.personnes.id }}">{{ medecins.personnes.nom }} {{ medecins.personnes.prenoms }}</option>
+                                </optgroup>
+                                <optgroup label="Valeurs disponibles">
+                                    {% for item in personnes %}
+                                    <option value="{{ item.id }}">{{ item.nom }} {{ item.prenoms }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-6 mb-5">
+                            <div class="form-group">
+                                <label for="specialites">specialites</label>
+                                <select name="specialites" class="form-control">
+<<<<<<< HEAD
+                                    <option value="specialites">Selectionner une spécialité</option>
+                                    {% for item in specialites %}
+                                    <option value="{{ item.id }}">{{ item.libelle }} </option>
+                                    {% endfor %}
+=======
+                                    <optgroup label="Liste disponibles">
+                                        <option value="{{ medecins.specialites.id }}">{{ medecins.specialites.libelle }} </option>
+                                    </optgroup>
+                                    <optgroup label="Valeurs disponibles">
+                                        {% for item in specialites %}
+                                        <option value="{{ item.id }}">{{ item.libelle }}</option>
+                                        {% endfor %}
+                                    </optgroup>
+>>>>>>> a85b8b7bbfdb6c4d0b15eaf1adbb35e632b8a091
+                                </select>
+                            </div>
+                        </div>
+                </div><br/>
+
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <button class="btn btn-primary">Modifier</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% block container %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Modifier agenda</h2>
+            <form action="{% url 'agendas.update' agendas.id %}" method="POST">
+                {% csrf_token %}
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="disponibilite">Disponibilite</label>
+                                <input type="text" name="disponibilite" id="disponibilite" class="form-control" value="{{ agendas.disponibilite }}" required>
+                            </div>
+                        </div> 
+                    </div>
+    
+    
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="medecins">Medecins</label>
+                                <select name="medecins" class="form-control">
+                                    <optgroup label="Medecins">
+                                        <option value="{{ agendas.medecins.id }}"> {{ agendas.medecins.idspecialite }}</option>
+                                    </optgroup>
+                                    <optgroup label="Valeurs par defauts">
+                                        {% for item in medecins %}
+                                            <option value="{{ item.id }}">{{ item.idspecialite }}</option>
+                                        {% endfor %}
+                                        <optgroup label="Valeurs disponibles">
+                                            {% for item in medecins %}
+                                            <option value="{{ item.id }}">{{ item.specialites_id }}</option>
+                                            {% endfor %}
+                                        </optgroup>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="jours">Jours</label>
+                                <select name="jours" class="form-control">
+                                    <optgroup label="Jours">
+                                        <option value="{{ agendas.jours.id }}"> {{ agendas.jours.date|date:"d-m-Y" }}</option>
+                                    </optgroup>
+                                    <optgroup label="Valeurs disponibles">
+                                        {% for item in jours %}
+                                            <option value="{{ item.id }}">{{ item.date|date:"d-m-Y" }}</option>
+                                        {% endfor %}
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="heures">Heures</label>
+                                <select name="heures" class="form-control">
+                                    <optgroup label="Heures">
+                                        <option value="{{ agendas.heures.id }}"> {{ agendas.heures.heure|date:"h:i" }}</option>
+                                    </optgroup>
+                                    <optgroup label="Valeurs disponibles">
+                                        {% for item in heures %}
+                                            <option value="{{ item.id }}">{{ item.heure|date:"h:i" }}</option>
+                                        {% endfor %}
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+    
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <button class="btn btn-primary">Modifier</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

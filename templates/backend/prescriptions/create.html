@@ -1,0 +1,63 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container%}
+
+
+<div class="card">
+    <div class="card-body">
+       
+        <form action="{% url 'prescriptions.store' users.id patient.id %}" method="POST">
+            {% csrf_token %}
+
+            <div class="card-body mt-3">
+                <h5 class="card-title">Ajouter une prescription pour : {{ patient.last_name }} {{ patient.first_name }} </h5>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="projet"><b>Patient</b></label><i class='text-danger'>*</i></label>
+                        <select name="users" id="users" class="form-select"  >
+                            <option value="{{ users.users.id }}">{{ users.users.last_name }} {{ users.users.first_name }}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="projet"><b>Dossier du patient</b><i class='text-danger'>*</i></label>
+                        <select name="dossierpatients" id="dossierpatients" class="form-control" required>
+                            {% for item in dossierpatients %}
+                                <option value="{{ item.id }}"> {{ item.numero }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="possologie"><b>Possologie</b><i class='text-danger'>*</i></label>
+                        <input type="text" name="possologie" class="form-control" required><br>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="medicament"><b>Médicament</b><i class='text-danger'>*</i></label>
+                        <input type="text" name="medicament" class="form-control" required>
+                
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="quantite"><b>Quantité</b><i class='text-danger'>*</i></label>
+                        <input type="text" name="quantite" id="quantite" class="form-control" required>
+                
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="categorie_prescription"><b>Catégorie prescription</b> <i class='text-danger'>*</i></label>
+                        <input type="text" name="categorie_prescription"  id="categorie_prescription" class="form-control" required>
+                
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary">Enregistrer</button>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

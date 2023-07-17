@@ -1,0 +1,97 @@
+{% extends 'frontend/inc/layout.html' %}
+{% load static %}
+
+{% block container %}
+
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">Connexion</h1>
+                <a href="" class="h4 text-white">Accueil</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h4 text-white">Connexion</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row g-5" >
+                <div class="text-center">
+                    <h3>Formulaire de Connexion</h3>
+                </div>
+                <div class="col-xl-2">
+                   &nbsp;
+                </div>
+                <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.1s">
+                    <div class="bg-light rounded h-100 p-5">
+                        <img src="{% static 'assets_front/img/doctor-2.jpeg' %}" class="img-responsive" alt="Team" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 wow slideInUp" data-wow-delay="0.3s" >
+                    <form method="POST" action="{% url 'authentication.login' %}">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            
+                            <div class="col-md-8 mb-3">
+                                <label for="email" class="mb-2"><b>Email</b><i class='text-danger'>*</i></label>
+                                <input type="email" class="form-control " name="username"  style="height: 45px; border-radius:10px">
+                            </div>
+
+                            <div class="col-md-4">
+                                &nbsp;
+                            </div>
+    
+                            <div class=" col-md-8 mb-3">
+                                <label for="password" class="mb-2"><b>Mot de passe</b><i class='text-danger'>*</i></label>
+                                <input type="password" name="password" class="form-control "  style="height: 45px; border-radius:10px">
+                            </div>
+
+                            <div class="col-md-4">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary w-100 py-2" type="submit" style="border-radius:10px" >Se connecter</button>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <p>Vous n'avez pas un compte? <a href="{% url 'auth.signup' %}" >S'inscrire</a></p>
+                            </div>                           
+                        </div>
+
+                
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+    <!-- Newsletter Start -->
+    <div class="container-fluid position-relative pt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1;">
+        <div class="container">
+            <div class="bg-primary p-5">
+                <form class="mx-auto" style="max-width: 600px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-white p-3" >
+                        <button class="btn btn-dark px-4">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Newsletter End -->
+    
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script> 
+   {% load sweetify %}
+   {% sweetify %}
+
+{% endblock %}
+
+   

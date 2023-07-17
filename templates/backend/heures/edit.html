@@ -1,0 +1,27 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+
+{% block container %}
+<section>
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Editer une heure</h5>
+        <form action="{% url 'heures.update' heures.id %}" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="heure">Heure</label>
+                <input type="time" class="form-control" id="heure" name="heure" style="height: 45px; border-radius:10px" placeholder="">
+              </div>
+            <div class="">
+                <button class="btn btn-warning btn-sm">Modifier</button>
+            </div>
+           
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

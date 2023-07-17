@@ -1,0 +1,51 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% load static %}
+{% block container %}
+<section class="section">
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Modifier un examen</h5>
+        <form action="{% url 'examenpatients.update' examenpatients.id %}" method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="resultat">Resultat</label>
+            <textarea name="resultat" id="resultat" style="height: 45px; border-radius:10px" class="form-control">{{ examenpatients.resultat }}</textarea>
+          </div>
+          <div class="mb-3">
+              <label for="description">Description</label>
+              <textarea name="description" id="description" style="height: 45px; border-radius:10px" class="form-control">{{ examenpatients.description }}</textarea>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label for="projet">Dossier</label>
+                <select name="dossierpatients" id="dossierpatients" class="form-control" required>
+                    <option value="">Selectionner un dossier</option>
+                    {% for item in dossierpatients %}
+                    <option value="{{ item.id }}"> {{ item.numero }}</option>
+                    {% endfor %}
+                </select>
+             </div>
+
+
+            <div class="col-md-12 mb-3">
+                <label for="projet">Type d'examens</label>
+                <select name="type_examens" id="type_examens" class="form-control" required>
+                    <option value="">Selectionner un type d'examen</option>
+                    {% for item in type_examens %}
+                    <option value="{{ item.id }}"> {{ item.libelle }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+              <button class="btn btn-primary btn-sm">Editer</button>
+              <a href="{% url 'examenpatients.index' %}" class="btn btn-success">Retour</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+  {% endblock %}

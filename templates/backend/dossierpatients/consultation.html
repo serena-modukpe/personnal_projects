@@ -1,0 +1,59 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container%}
+
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Consultation</h2>
+        <form action="{% url 'consultationpatients.store' %}" method="POST">
+            {% csrf_token %}
+
+
+            <div class="card-body mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="projet">Consultations</label>
+                        <select name="consultations" id="consultations" class="form-control" required>
+                            <option value="">Selectionner une consultation</option>
+                            {% for item in consultationpatients %}
+                            <option value="{{ item.id }}"> {{ item.consultationpatients.consultations.libelle }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+
+                    <div class="col-md-12 mb-3">
+                        <label for="projet">dossier des patients</label>
+                        <select name="dossierpatients" id="dossierpatients" class="form-control" required>
+                            <option value="">Selectionner un dossier</option>
+                            {% for item in consultationspatients %}
+                            <option value="{{ item.id }}"> {{ item.consultationpatients.dossierpatients.numero }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                   
+                    
+                    <div class="col-md-12 mb-3">
+                        <label for="observation">Observation</label>
+                        <input type="text" name="observation"  id="observation" class="form-control" style="height: 45px; border-radius:10px" required>
+                
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="recommandation">Recommandation</label>
+                        <input type="text" name="recommandation"  id="recommandation" class="form-control" style="height: 45px; border-radius:10px" required>
+                
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary">Ajouter</button>
+                        <a href="{% url 'consultationpatients.index' %}" class="btn btn-danger">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

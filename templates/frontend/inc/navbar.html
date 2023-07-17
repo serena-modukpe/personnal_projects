@@ -1,0 +1,52 @@
+{% load static %}
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+    <a href="{% url 'accueil' %}" class="navbar-brand p-0">
+        <h1 class="m-0 " style="color: #2D3CFF;"><i class="fa fa-heartbeat me-2" ></i>Santé-Plus</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+            <a href="{% url 'accueil' %}" class="nav-item nav-link">Accueil</a>
+            <a href="{% url 'apropos' %}" class="nav-item nav-link">A propos</a>
+            <a href="{% url 'service' %}" class="nav-item nav-link">Nos services</a>
+            <!--div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                <div class="dropdown-menu m-0">
+                    <a href="{% url 'prix' %}" class="dropdown-item">Prix</a>
+                    <a href="{% url 'team' %}" class="dropdown-item">Nos médecins</a>
+                    <a href="{% url 'temoignage' %}" class="dropdown-item">Témoignages</a>
+                    <a href="{% url 'appointment' %}" class="dropdown-item">Rendez-vous</a>
+                </div>
+            </div-->
+            <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+        </div>
+       
+        {% if user.is_authenticated %}
+            {% if user.roles.libelle == 'Patient' %}
+            <a href="{% url 'dashbordpatient' %}" class="btn btn-primary py-2 px-4 ms-3 mb-2 mb-lg-0" >Mon compte</a>
+            {% elif user.roles.libelle == 'Médecin' %}
+            <a href="{% url 'dashboard_medecin' %}" class="btn btn-primary py-2 px-4 ms-3 mb-2 mb-lg-0" >Mon compte</a>
+            {% else %}
+            <a href="{% url 'dashbord' %}" class="btn btn-primary py-2 px-4 ms-3 mb-2 mb-lg-0" >Mon compte</a>
+            {% endif %}
+
+            {% if user.roles.id == 1 %}
+            <a href="{% url 'appointment' %}" class="btn btn-primary py-2 px-4 ms-3 mb-2 mb-lg-0" >Rendez-vous</a>
+            {% endif %}    
+
+
+        <a href="{% url 'auth.logout' %} " class="btn btn-primary py-2 px-4 ms-3" >Se deconnnecter</a>
+        {% else %}
+
+        <a href="{% url 'auth.login' %}" class="btn btn-primary py-2 px-4 ms-3" >Se connecter</a>
+        <button type="button" class="btn text-dark" data-bs-toggle="modal"></button>
+        <a href="{% url 'auth.signup' %}" class="btn text-white py-2 px-4 ms-3" style="background-color: #CA0700;">S'inscrire</a>
+        {% endif %}
+
+        
+       
+</nav>
+<!-- Navbar End -->

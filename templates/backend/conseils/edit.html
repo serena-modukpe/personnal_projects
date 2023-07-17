@@ -1,0 +1,32 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% load static %}
+{% block container %}
+<section class="section">
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Modifier un conseil</h5>
+        <form action="{% url 'conseils_medicaux.update' conseils_medicaux.id %}" method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="code">type</label>
+            <input type="text" class="form-control" id="type" name="type" style="height: 45px; border-radius:10px" placeholder="" value="{{conseils_medicaux.type}}">
+          </div>
+          
+          <div class=" col-8 mb-3">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" style="height: 45px; border-radius:10px" class="form-control">{{conseils_medicaux.description}}</textarea>
+          </div >
+            
+            <div class="mb-3">
+              <button class="btn btn-primary btn-sm">Editer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+  {% endblock %}

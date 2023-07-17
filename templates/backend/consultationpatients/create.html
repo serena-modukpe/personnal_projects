@@ -1,0 +1,57 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container%}
+
+
+<div class="card">
+    <div class="card-body">
+        
+
+        <h2 class="card-title">Consultation de : {{patient.last_name}} {{patient.first_name}}</h2>
+        <form action="{% url 'consultationpatients.store' users.id patient.id %}" method="POST">
+            {% csrf_token %}
+
+
+            <div class="card-body mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="projet"><b>Consultations</b><i class='text-danger'>*</i></label>
+                        <select name="consultations" id="consultations" class="form-control" required>
+                            <option value="">Selectionner une consultation</option>
+                            {% for item in consultations %}
+                            <option value="{{ item.id }}"> {{ item.libelle }}</option>
+                           {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="projet"><b>Dossier du patient</b><i class='text-danger'>*</i></label>
+                        <select name="dossierpatients" id="dossierpatients" class="form-control" required>
+                            {% for item in dossierpatients %}
+                                <option value="{{ item.id }}"> {{ item.numero }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="observation"><b>Observation</b><i class='text-danger'>*</i></label>
+                        <input type="text" name="observation"  id="observation" class="form-control" style="height: 45px; border-radius:10px" required>
+                
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="recommandation"><b>Recommandation</b><i class='text-danger'>*</i></label>
+                        <input type="text" name="recommandation"  id="recommandation" class="form-control" style="height: 45px; border-radius:10px" required>
+                
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary">Enregistrer</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

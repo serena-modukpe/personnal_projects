@@ -1,0 +1,66 @@
+{% load static%}
+ <!-- ======= Sidebar ======= -->
+ <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'dashboard_medecin' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gear-fill"></i><span>Grille tarifaires</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'consultations.index' %}">
+              <i class="bi bi-circle"></i><span>Liste des consultations</span>
+            </a>
+          </li>
+         
+
+        </ul>
+      </li>
+      <!-- End Components Nav -->
+
+            <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#visites" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person-heart"></i><span>Mes patients</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="visites" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+                <li>
+                  <a href="{% url 'rendezvous.liste_rendezvous' %}">
+                    <i class="bi bi-circle"></i><span>Liste des rendez-vous</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="{% url 'rendezvous.index_medecin' %}">
+                    <i class="bi bi-circle"></i><span>Liste des patients</span>
+                  </a>
+                </li>
+
+               
+
+                <li>
+                  
+                </li>
+
+
+              </ul>
+            </li><!-- End Tables Nav -->   
+                      
+     
+
+
+                
+
+    </ul>
+
+  </aside>
+  <!-- End Sidebar-->

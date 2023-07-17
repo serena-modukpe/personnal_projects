@@ -1,0 +1,28 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+
+{% block container %}
+<section>
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Ajouter un jour</h5>
+        <form action="{% url 'jours.store' %}" method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="date"><b>Date</b><i class='text-danger'>*</i></label>
+            <input type="date" class="form-control" id="date" name="date" style="height: 45px; border-radius:10px" value="{{jours.date|date:'Y-m-d' }}">
+          </div>
+          
+            <div class="mb-3">
+              <button class="btn btn-primary " >Enregistrer</button>
+              <a href="{% url 'jours.index' %}" class="btn btn-danger">Retour</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'frontend/inc/layout.html' %}
+{% load static %}
+{% block container %}
+<div class="container">
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Patient</th>
+                    <th scope="col">Date de naissance</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for Items in personnes %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ personnes.nom }} {{ personnes.prenoms }}{{ personnes.ddn }}</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">
+                            <i class="bi bi-folder-plus"></i>
+                        </a>
+                        <a href="#" class="btn btn-primary btn-sm">
+                            <i class="bi bi-info-circle"></i>
+                        </a>
+                        <a href="#" class="btn btn-primary btn-sm">
+                            Voir la liste des patients
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

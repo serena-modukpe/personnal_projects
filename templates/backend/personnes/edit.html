@@ -1,0 +1,74 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+
+{% block container %}
+<section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Modifier une personne</h5>
+                <form action="{% url 'personnes.update' personnes.id %}"  method="POST">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        
+                        <div class="col-6 mb-3" >
+                            <label for="nom" class="mb-2">Nom</label>
+                            <input type="text" class="form-control border-0 bg-light px-4" style="height: 45px;border-radius:10px" name="nom"  value="{{ personnes.nom }}">
+                        </div>
+
+                        <div class="col-6 mb-3" >
+                            <label for="prenom" class="mb-2">Prénoms</label>
+                            <input type="text" class="form-control border-0 bg-light px-4" style="height: 45px; border-radius:10px" name="prenoms"  value="{{ personnes.prenoms }}">
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label for="telephone" class="mb-2">Téléphone</label>
+                            <input type="text" class="form-control border-0 bg-light px-4" style="height: 45px; border-radius:10px" name="telephone"  value="{{ personnes.telephone }}">
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="ddn" name="ddn"  value="{{ personnes.ddn }}">
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label for="email" class="mb-2">Email</label>
+                            <input type="email" class="form-control border-0 bg-light px-4"  style="height: 45px; border-radius:10px" name="email"  value="{{ personnes.email }}">
+                        </div>
+                       
+                        <div class="col-6 mb-3">
+                            <label for="adresse" class="mb-2">Adresse</label>
+                            <input type="text" class="form-control border-0 bg-light px-4"  style="height: 45px; border-radius:10px" name="adresse"  value="{{ personnes.adresse }}">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="users">utilisateurs</label>
+                                    <select name="users" class="form-control">
+                                        <optgroup label="Valeur par défaut">
+                                            <option value="{{ personnes.users.id }}">{{ personnes.users.last_name }}</option>
+                                        </optgroup>
+                                        <optgroup label="Valeurs disponibles">
+                                            {% for item in users %}
+                                            <option value="{{ item.id }}">{{ item.last_name }}</option>
+                                            {% endfor %}
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div><br/>
+
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <button class="btn btn-primary">Modifier</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

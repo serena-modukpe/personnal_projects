@@ -1,0 +1,348 @@
+{% load static %}
+ <!-- ======= Sidebar ======= -->
+ <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'dashbord' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gear-fill"></i><span>Paramètres</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'users.index' %}">
+              <i class="bi bi-circle"></i><span>Liste des Utilisateurs</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'medecins.index' %}">
+              <i class="bi bi-circle"></i><span>Liste des médécins</span>
+            </a>
+          </li>
+
+          
+
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <!--li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-person-fill-check"></i><span>Liste des patients</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="forms-elements.html">
+              <i class="bi bi-circle"></i><span>Form Elements</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-layouts.html">
+              <i class="bi bi-circle"></i><span>Form Layouts</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-editors.html">
+              <i class="bi bi-circle"></i><span>Form Editors</span>
+            </a>
+          </li>
+          <li>
+            <a href="forms-validation.html">
+              <i class="bi bi-circle"></i><span>Form Validation</span>
+            </a>
+          </li>
+        </ul>
+      </li><End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#users-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-people-fill"></i><span>Utilisateurs</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="users-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'users.index' %}">
+              <i class="bi bi-circle"></i><span>Liste des utilisateurs</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'users.create'%}">
+              <i class="bi bi-circle"></i><span>Ajouter un utilisateur</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#visites" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-calendar-check"></i><span>Rendez-vous</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="visites" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'rendezvous.index' %}">
+              <i class="bi bi-circle"></i><span>Liste des Rendez-vous</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#personnes-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-person-heart"></i><span>Personnes</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="personnes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'personnes.index' %}">
+              <i class="bi bi-circle"></i><span>Liste des personnes</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'personnes.create'%}">
+              <i class="bi bi-circle"></i><span>Ajouter une personne</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#conseils-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-question-circle-fill"></i><span>Conseils</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="conseils-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'conseils_medicaux.index' %}">
+              <i class="bi bi-circle"></i><span>Liste des conseils médicaux</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'conseils_medicaux.create' %}">
+              <i class="bi bi-circle"></i><span>Ajouter un conseil</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#statut-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bookmarks-fill"></i><span>Statuts</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="statut-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'statut.index' %}">
+              <i class="bi bi-circle"></i><span>Liste des statuts</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'statut.create'%}">
+              <i class="bi bi-circle"></i><span>Ajouter un statut</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#specialites-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-list-stars"></i><span>Spécialités</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="specialites-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'specialites.index'%}">
+              <i class="bi bi-circle"></i><span>Liste des spécialités</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'specialites.create'%}">
+              <i class="bi bi-circle"></i><span>Ajouter une specialité</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Consultations-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-clipboard2-pulse"></i><span>Consultations</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Consultations-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'consultations.index'%}">
+              <i class="bi bi-circle"></i><span>Liste des consultations</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'consultations.create'%}">
+              <i class="bi bi-circle"></i><span>Ajouter une consultation</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#heures-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-alarm-fill"></i><span>Heures</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="heures-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'heures.index'%}">
+              <i class="bi bi-circle"></i><span>Liste des heures</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'heures.create'%}">
+              <i class="bi bi-circle"></i><span>Ajouter une heure</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#jours-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-calendar2-day-fill"></i><span>Jours</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="jours-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'jours.index'%}">
+              <i class="bi bi-circle"></i><span>Liste des jours</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'jours.create'%}">
+              <i class="bi bi-circle"></i><span>Ajouter un jour</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#habilitations-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-mortarboard-fill"></i><span>Habilitations</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="habilitations-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'habilitations.index'%}">
+              <i class="bi bi-circle"></i><span>Liste des habilitations</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'habilitations.create'%}">
+              <i class="bi bi-circle"></i><span>Ajouter une habilitation</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-arrow-up"></i><span>Roles</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'roles.index'%}">
+              <i class="bi bi-circle"></i><span>Liste des roles</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'roles.create'%}">
+              <i class="bi bi-circle"></i><span>Ajouter un role</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Tables Nav -->
+      
+            </li><!-- End Forms Nav -->
+
+            
+      
+
+            <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#agendas" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-calendar-check"></i><span>Agendas</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="agendas" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="{% url 'agendas.index' %}">
+                    <i class="bi bi-circle"></i><span>Liste des agendas</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'agendas.create' %}">
+                    <i class="bi bi-circle"></i><span>Ajouter un agendas</span>
+                  </a>
+                </li>
+              </ul>
+            </li><!-- End Tables Nav -->
+                  </li><!-- End Forms Nav -->
+              
+
+                  
+                  <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#type_examens" data-bs-toggle="collapse" href="#">
+                      <i class="bi bi-list-nested"></i><span>Type d'examen</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="type_examens" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                      <li>
+                        <a href="{% url 'type_examens.index' %}">
+                          <i class="bi bi-circle"></i><span>Liste des types d'examen</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'type_examens.create' %}">
+                          <i class="bi bi-circle"></i><span>Ajouter un type d'examen</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li><!-- End Tables Nav -->
+                        </li><!-- End Forms Nav -->    
+                      
+     
+
+
+                 
+
+
+
+
+                       
+
+
+
+                        <li class="nav-item">
+                          <a class="nav-link collapsed" data-bs-target="#medecins" data-bs-toggle="collapse" href="#">
+                            <i class="bi bi-person-fill"></i><span>Medecins</span><i class="bi bi-chevron-down ms-auto"></i>
+                          </a>
+                          <ul id="medecins" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                            <li>
+                              <a href="{% url 'medecins.index' %}">
+                                <i class="bi bi-circle"></i><span>Liste des medecins</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="{% url 'medecins.create' %}">
+                                <i class="bi bi-circle"></i><span>Ajouter un medecins</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li><!-- End Tables Nav -->
+
+
+
+
+
+                        <!-- End Tables Nav -->
+
+                       
+    </ul>
+
+  </aside>
+  <!-- End Sidebar-->

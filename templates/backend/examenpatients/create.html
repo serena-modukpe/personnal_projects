@@ -1,0 +1,63 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% load static %}
+{% block container %}
+<section class="section">
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+
+        <h5 class="card-title">Ajouter un examen pour : {{ patient.last_name }} {{ patient.first_name }} </h5>
+        <form action="{% url 'examenpatients.store' users.id patient.id %}" method="POST">
+          {% csrf_token %}
+        <div class="container">
+        <div class="row">
+           
+                  
+                  <div class="col-md-6 mb-3">
+                    <label for="projet"><b>Patient</b><i class='text-danger'>*</i></label>
+                    <select name="users" id="users" class="form-select"  >
+                        <option value="{{ users.users.id }}">{{ users.users.last_name }} {{ users.users.first_name }}</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="projet"><b>Dossier du patient</b><i class='text-danger'>*</i></label>
+                    <select name="dossierpatients" id="dossierpatients" class="form-control" required>
+                      {% for item in dossierpatients %}
+                        <option value="{{ item.id }}"> {{ item.numero }}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+          
+                  <div class="col-md-6 mb-3">
+                    <label for="description"><b>Description</b><i class='text-danger'>*</i></label>
+                    <textarea name="description" id="description" style="height: 45px;border-radius:10px; padding: 10px;" class="form-control"></textarea>
+                  </div>
+                
+                  <div class="col-md-6 mb-3">
+                    <label for="resultat"><b>Résultat</b><i class='text-danger'>*</i></label>
+                    <textarea  class="form-control" style="height: 45px;border-radius:10px;padding: 10px" id="resultat" name="resultat" placeholder=""></textarea>
+                  </div>
+
+                  
+
+                <div class="col-md-6 mb-3">
+                    <label for="type_examens"><b>Type d'examens</b><i class='text-danger'>*</i></label>
+                    <select name="type_examens" id="type_examens" class="form-select">
+                      <option value="">Selectionner un type d'examen</option>
+                      {% for item in type_examens %}
+                        <option value="{{ item.id }}">{{ item.libelle }}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+                
+                  <div class="mb-3">
+                    <button class="btn btn-primary ">Enregistrer</button>
+                    
+                  </div>
+                </div>
+              </form>
+        </div>
+    </div>
+{% endblock %}

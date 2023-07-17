@@ -1,0 +1,52 @@
+{% load static%}
+ <!-- ======= Sidebar ======= -->
+ <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'dashbordpatient' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!--End Dashboard Nav-->
+            <!--li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#visites" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-bell-fill"></i><span> mes rendez-vous</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="visites" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="{% url 'rendezvous.index_patient' %}">
+                    <i class="bi bi-circle"></i><span>Liste des visites</span>
+                  </a>
+                </li>
+              </ul>
+            </li--><!-- End Tables Nav -->
+            <a class="nav-link collapsed" data-bs-target="#rendezvous"  href="{% url 'rendezvous.index_patient' %}">
+              <i class="bi bi-card-list"></i> Rendez-vous en attente
+            </a>
+
+         </li--><!-- End Forms Nav -->  
+         <a class="nav-link collapsed" data-bs-target="#rendezvous"  href="{% url 'rendezvous.ancien_rendez_vous' %}">
+          <i class="bi bi-card-checklist"></i> Rendez-vous confirmés
+        </a>
+         
+        
+        <a class="nav-link collapsed" data-bs-target="#rendezvous"  href="{% url 'dossierpatients.index_patient'  %}">
+          <i class="bi bi-folder-plus"></i>Mon dossier
+        </a>
+     </li><!-- End Forms Nav -->  
+
+
+    
+                      
+     
+
+
+               
+
+    </ul>
+
+  </aside>
+  
+  <!-- End Sidebar-->

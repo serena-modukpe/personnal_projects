@@ -1,0 +1,83 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+
+{% block container %}
+<section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Modifier un utilisateur</h5>
+                <form action="{% url 'users.update' users.id %}"  method="POST">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        
+                        <div class="col-6 mb-3" >
+                            <label for="name" class="mb-2">Nom</label>
+                            <input type="text" class="form-control " style="height: 45px;border-radius:10px" name="last_name"  value="{{ users.last_name }}">
+                        </div>
+
+                        <div class="col-6 mb-3" >
+                            <label for="prenoms" class="mb-2">Prénoms</label>
+                            <input type="text" class="form-control " style="height: 45px;border-radius:10px" name="first_name"  value="{{ users.first_name }}">
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label for="email" class="mb-2">Email</label>
+                            <input type="email" class="form-control"  style="height: 45px; border-radius:10px" name="email"  value="{{ users.email }}">
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label for="telephone" class="mb-2">Telephone</label>
+                            <input type="text" class="form-control "  style="height: 45px; border-radius:10px" name="telephone"  value="{{ users.telephone }}">
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label for="adresse" class="mb-2">Adresse</label>
+                            <input type="adresse" class="form-control "  style="height: 45px; border-radius:10px" name="adresse"  value="{{ users.adresse }}">
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <label for="ddn" class="mb-2">Date de naissance</label>
+                            <input type="date" class="form-control border-0 bg-light px-4"  style="height: 45px; border-radius:10px" name="ddn">
+                        </div>
+                       
+                        <div class="col-6 mb-3">
+                            <label for="password" class="mb-2">Mot de passe</label>
+                            <input type="password" class="form-control "  style="height: 45px; border-radius:10px" name="password"  value="">
+                        </div>
+
+                       <div class="col-6 mb-3">
+                            <label for="password" class="mb-2">Confirmer mot de passe</label>
+                            <input type="password" class="form-control "  style="height: 45px; border-radius:10px" name="password"  value="">
+                        </div> 
+
+                        
+                            <div class="col-md-6">
+                                
+                                    <label for="roles">Roles</label>
+                                    <select name="roles" class="form-select form-select-lg">
+                                        <optgroup label="Valeur par défaut">
+                                            <option value="{{ users.roles.id }}">{{ users.roles.libelle }}</option>
+                                        </optgroup>
+                                        <optgroup label="Valeurs disponibles">
+                                            {% for item in roles %}
+                                            <option value="{{ item.id }}">{{ item.libelle }}</option>
+                                            {% endfor %}
+                                        </optgroup>
+                                    </select>
+                                </div>
+                        
+
+                       
+                            <div class="col-md-3 ">
+                                <button class="btn btn-primary">Modifier</button>
+                            </div>
+        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

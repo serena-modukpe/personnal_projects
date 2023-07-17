@@ -1,0 +1,70 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+{% block container %}
+
+<section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Consultation 
+            <a href="{% url 'consultationpatients.create' %}" class="btn btn-sm btn-primary">Ajouter</a> 
+          
+            <a href="{% url 'dashboard_medecin' %}" class="btn btn-sm btn-danger">Retour</a>
+          </div>
+          </h5>
+          <table class="myTable table table-bordered  table-responsive" id="table_patient">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">N°</th>
+                    <th scope="col" class="text-center">Patients</th>
+                    <th scope="col" class="text-center">Consultations</th>
+                    <th scope="col" class="text-center">Recommandation</th>
+                    <th scope="col" class="text-center">Actions</th>                    
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in consultationpatients %}
+                <tr>
+                    <td scope="row">{{ forloop.counter }}</th>
+                    <td>{{item.dossierpatients.users.last_name}} {{item.dossierpatients.users.first_name}}</td>
+                    <td>{{ item.consultations.libelle }}</td>
+                    <td>{{ item.recommandation }}</td>
+                    <td>
+                        
+                    <a href="{% url 'dossierpatients.details' item.id %}" class="btn btn-warning btn-sm"><i class="bi bi-list-ul" title="details"></i></a>
+
+                    </td>
+            </tr>
+            
+            {% endfor %}
+            
+            </tbody>
+        </table>
+    </div>
+    </div>
+    </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script> 
+
+<script>
+   $(document).ready(function () {
+          if(window.navigator.language == 'fr-FR'){
+              var table = $('#table_patient').DataTable({
+                  lengthMenu: [5,10],
+                  language: {
+                  url: "{% static 'assets_back/js/dataTablesFrench.js' %}"
+                  }
+              });
+          } else {
+              var table = $('#table_patient').DataTable({
+                  lengthMenu: [5,10],
+              });
+          }
+      });
+</script>
+
+{% load sweetify %}
+{% sweetify %}
+    
+{% endblock %}

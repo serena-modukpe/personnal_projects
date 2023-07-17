@@ -1,0 +1,83 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% block container %}
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Agendas</h2>
+        <form action="{% url 'agendas.store' %}" method="POST">
+            {% csrf_token %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="jours"><b>Dates</b><i class='text-danger'>*</i></label>
+                        <select name="jours" id="jours" class="form-control" required>
+                            <option value=""><b>Selectionner une date</b><i class='text-danger'>*</i></option>
+                            {% for item in jours %}
+                                <option value="{{ item.id }}">{{ item.date|date:"d-m-Y" }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="heures"><b>Heure</b><i class='text-danger'>*</i></label>
+                        <select name="heures" id="heures" class="form-control" required>
+                            <option value="">Selectionner une heure</option>
+                            {% for item in heures %}
+                                <option value="{{ item.id }}">{{ item.heure }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="medecins"><b>Medecins</b><i class='text-danger'>*</i></label>
+                        <select name="users" id="users" class="form-control" required>
+                            <option value="">Selectionner un medecin</option>
+                            {% for item in users %}
+                                <option value="{{ item.id }}">  {{ item.last_name }}  {{ item.first_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="specialites"><b>Specialité</b><i class='text-danger'>*</i></label>
+                        <select name="specialites" id="specialites" class="form-control" required>
+                            <option value="">Selectionner une spécialité</option>
+                            {% for item in specialites %}
+                                <option value="{{ item.id }}">  {{ item.libelle }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <label for="projet"><b>Statut</b><i class='text-danger'>*</i></label>
+                    <select name="statut" id="statut" class="form-control" style="height: 45px; border-radius:10px" required>
+                        <option value="">Selectionner un statut</option>
+                        {% for item in statut %}
+                        <option value="{{ item.id }}">{{ item.libelle }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="disponibilite"><b>Disponibilite</b><i class='text-danger'>*</i></label>
+                        <input type="text" name="disponibilite" id="disponibilite" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary">Ajouter</button>
+                        <a href="{% url 'agendas.index' %}" class="btn btn-danger">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

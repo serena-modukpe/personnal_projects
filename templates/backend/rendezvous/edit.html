@@ -1,0 +1,105 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% block container %}
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Modifier un rendez vous</h2>
+        <form action="{% url 'rendezvous.update' rendezvous.id %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="users">Personnes</label>
+                            <select name="users" class="form-control">
+                                <optgroup label="users">
+                                    <option value="{{ rendezvous.users.id }}">{{ rendezvous.users.last_name }} {{ rendezvous.users.first_name }}</option>
+                                </optgroup>
+                                
+                            </select>
+                        </div>
+                    </div>
+
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="specialites">Specialites</label>
+                    <select name="specialites" class="form-control">
+                        <optgroup label="Specialites">
+                            <option value="{{ rendezvous.specialites.id }}">{{ rendezvous.specialites.libelle }}</option>
+                        </optgroup>
+                        <optgroup label="Valeurs disponibles">
+                            {% for item in specialites %}
+                            <option value="{{ item.id }}">{{ item.libelle }} </option>
+                            {% endfor %}
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="statut">Statut</label>
+                    <select name="statut" class="form-control">
+                        <optgroup label="Valeur par défaut">
+                            <option value="{{ rendezvous.statut.id }}">{{ rendezvous.statut.libelle }}</option>
+                        </optgroup>
+                        <optgroup label="Valeurs disponibles">
+                            {% for item in statut %}
+                            <option value="{{ item.id }}">{{ item.libelle }} </option>
+                            {% endfor %}
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="agendas">Agenda</label>
+                    <select name="agendas" class="form-control">
+                        <optgroup label="Agendas">
+                            <option value="{{ rendezvous.agendas.id }}">{{ rendezvous.agendas.jours.date}}  {{ rendezvous.agendas.heures.heure}}</option>
+                        </optgroup>
+                        <optgroup label="Valeurs disponibles">
+                            {% for item in agendas %}
+                            <option value="{{ item.id }}">{{ rendezvous.agendas.jours.date}}  {{ rendezvous.agendas.heures.heure}} </option>
+                            {% endfor %}
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+
+                       
+                       
+                   
+
+                            
+                           
+
+
+
+                          
+
+
+
+
+
+
+                </div><br/>
+
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <button class="btn btn-primary">Modifier</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

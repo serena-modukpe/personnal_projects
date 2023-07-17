@@ -1,0 +1,31 @@
+{% extends 'frontend/inc/layout.html' %}
+{% load static %}
+{% block container %}
+<body>
+    <h2>Consultations</h2>
+    <div class="container">
+        <div class="row">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Libellé</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Coût</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for consultations in consultations %}
+                    <tr>
+                        <th scope="row">{{ consultations.id }}</th>
+                        <td>{{ consultations.libelle }}</td>
+                        <td>{{ consultations.description }}</td>
+                        <td>{{ consultations.cout }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+{% endblock %}

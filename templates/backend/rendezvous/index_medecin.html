@@ -1,0 +1,75 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+{% block container %}
+
+   <section>
+    <div class="row">
+      <div class="card pb-3">
+        <div class="card-body">
+          <h5 class="card-title">Mes patients 
+          
+            <a href="{% url 'dashboard_medecin' %}" class="btn btn-sm btn-danger">Retour</a>
+          </div>
+          </h5>
+          <table class="myTable table table-bordered  table-responsive" id="table_medecins">
+            <thead>
+              <tr>
+                <th scope="col">N</th>
+
+                        <th scope="col" class="text-center">Rendez-vous</th>
+                        
+                        <th scope="col" class="text-center">Nom</th>
+                        <th scope="col" class="text-center">Prénoms</th>
+                        <th scope="col" class="text-center">Date</th>    
+                        <th scope="col" class="text-center">Heure</th>
+                        <th scope="col" class="text-center">Actions</th> 
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for item in rendezvous %}
+              
+              <tr>
+                <td scope="row" class="text-center">{{ forloop.counter }}</td>
+                <td class="text-center">{{item.specialites.libelle}}</td>
+                <td class="text-center">{{ item.users.last_name }}</td>
+                <td class="text-center">{{ item.users.first_name }}</td>
+                <td class="text-center">{{ item.agendas.jours.date }}</td>
+                <td class="text-center">{{ item.agendas.heures.heure }}</td>
+                <td class="text-center">
+                  <a href="{% url 'dossierpatients.dossierpatient' item.users.id  %}" class="btn btn-success btn-sm"><i class="bi bi-eye" title=""></i></a>
+                </td>
+                
+
+                  
+                  {% endfor %}
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+   </section>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script> 
+
+   <script>
+     $(document).ready(function () {
+          if(window.navigator.language == 'fr-FR'){
+              var table = $('#table_medecins').DataTable({
+                  lengthMenu: [5,10],
+                  language: {
+                  url: "{% static 'assets_back/js/dataTablesFrench.js' %}"
+                  }
+              });
+          } else {
+              var table = $('#table_medecins').DataTable({
+                  lengthMenu: [5,10],
+              });
+          }
+      });
+  </script>
+
+{% load sweetify %}
+{% sweetify %}
+    
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container %}
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Modifier prescription</h2>
+        <form action="{% url 'prescriptions.update' prescriptions.id %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="quantite">Quantité</label>
+                            <input type="text" name="quantite" id="quantite" class="form-control" style="height: 45px;border-radius:10px" value="{{ prescriptions.quantite }}" required>
+                        </div>
+                    </div> 
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="possologie">Possologie</label>
+                            <input type="text" name="possologie" id="possologie" class="form-control" style="height: 45px;border-radius:10px" value="{{ prescriptions.possologie }}" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="medicament">Médicament</label>
+                            <input type="text" name="medicament" id="medicament" class="form-control" style="height: 45px;border-radius:10px" value="{{ prescriptions.medicament }}" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dossierpatients">Dossier</label>
+                            <select name="dossierpatients" class="form-control">
+                                <optgroup label="Dossier">
+                                    <option value="{{ prescriptions.dossierpatients.id }}">{{ prescriptions.dossierpatients.numero }} </option>
+                                </optgroup>
+
+                                <optgroup label="Valeurs disponibles">
+                                    {% for item in dossierpatients %}
+                                    <option value="{{ item.id }}">{{ item.numero }} </option>
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="categorie_prescription">Catégorie prescription</label>
+                            <input type="text" name="categorie_prescription" id="categorie_prescription" class="form-control" required value="{{ prescriptions.categorie_prescription }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2 text-center m-5">
+                        <button class="btn btn-primary">Modifier</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% load sweetify %}
+{% sweetify %}
+{% endblock %}

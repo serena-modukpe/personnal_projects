@@ -1,0 +1,41 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container%}
+
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Créer un dossier pour : 
+                <button class="btn btn-primary">Ajouter</button>
+                <a href="{% url 'dossierpatients.consultation_patients' %}" class="btn btn-danger">Retour</a>
+        </h2>
+        <form action="{% url 'dossierpatients.store' %}" method="POST">
+            {% csrf_token %}
+
+
+            <div class="card-body mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="projet"><b>Patients</b><i class='text-danger'>*</i></label>
+                        <select name="users" id="users" class="form-control" style="height: 45px; border-radius:10px" required>
+                            <option value="">Selectionner un patients</option>
+                            {% for item in users %}
+                            <option value="{{ item.id }}">{{ item.last_name }}  {{ item.first_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                   
+                    
+                    <div class="col-md-12 mb-3">
+                        <label for="numero"><b>Numero</b></label>
+                        <input type="text" name="numero"  id="numero" class="form-control" style="height: 45px; border-radius:10px" required>
+                
+                    </div>
+
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

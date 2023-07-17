@@ -1,0 +1,49 @@
+{% extends 'frontend/inc/layout.html' %}
+{% load static %}
+{% block container %}
+<body>
+    <h2>Consultations</h2>
+    <div class="container">
+        <div class="row">
+            <table class="myTable table table-bordered table-responsive" id="table_dossierpatients">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">N°</th>
+                        <th scope="col" class="text-center">Libellé</th>
+                        <th scope="col" class="text-center">Description</th>
+                        <th scope="col" class="text-center">Coût</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for consultations in consultations %}
+                    <tr>
+                        <th scope="row" class="text-center">{{ consultations.id }}</th>
+                        <td class="text-center">{{ consultations.libelle }}</td>
+                        <td class="text-center">{{ consultations.description }}</td>
+                        <td class="text-center">{{ consultations.cout }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+<script>
+     $(document).ready(function () {
+          if(window.navigator.language == 'fr-FR'){
+              var table = $('#table_dossierpatients').DataTable({
+                  lengthMenu: [5,10],
+                  language: {
+                  url: "{% static 'assets_back/js/dataTablesFrench.js' %}"
+                  }
+              });
+          } else {
+              var table = $('#table_dossierpatients').DataTable({
+                  lengthMenu: [5,10],
+              });
+          }
+      });
+  </script>
+
+{% endblock %}

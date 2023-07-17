@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <!-- topbar -->
+	{% include 'backend/incback/head.html' %}
+    <!-- endtopbar -->
+
+   
+
+<body>
+     <!-- header -->
+	{% include 'backend/incback/header.html' %}
+    <!-- endheader -->
+
+    <!-- asidebar -->
+    {% if user.roles.id == 1 %}
+
+	    {% include 'backend/incback/aside_patient.html' %}
+
+    {% elif user.roles.id == 2 %}
+
+        {% include 'backend/incback/aside_medecin.html' %}
+
+    {% else %}
+
+        {% include 'backend/incback/asidebar.html' %}
+
+    {% endif %}
+
+    <!-- endasidebar -->
+
+    <!-- block -->
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+              </ol>
+            </nav>
+          </div><!-- End Page Title -->
+      
+          <section class="section dashboard">
+            
+                {% block container %}
+                
+                {% endblock %}
+          </section>
+        
+    </main>
+	<!-- endblock -->
+
+    <!-- footer -->
+	{% include 'backend/incback/footer.html' %}
+    <!-- endfooter -->
+
+    <!-- ScriptsJs -->
+	{% include 'backend/incback/ScriptsJs.html' %}
+    <!-- endScriptsJs -->
+    
+</body>
+</html>

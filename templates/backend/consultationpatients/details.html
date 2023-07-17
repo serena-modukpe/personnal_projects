@@ -1,0 +1,70 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container%}
+
+
+<section>
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Détails : {{ rendezvous.users.last_name }} {{ rendezvous.users.first_name }} </h5>
+        <form action="" method="">
+          <div class="container">
+            <div class="row">
+              <div class="col-6 mb-3" >
+
+                <label for="nom" class="mb-2">Nom et prénoms</label>
+                <input type="text" class="form-control " style="height: 45px;border-radius:10px" name="nom"  value="{{ rendezvous.users.last_name }} {{ rendezvous.users.first_name }}" disabled >
+            </div>
+    
+            <div class="col-6 mb-3">
+                <label for="email" class="mb-2">Email</label>
+                <input type="email" class="form-control "  style="height: 45px; border-radius:10px" name="consultations"  value="{{ rendezvous.users.email }}" disabled>
+            </div>
+
+            <div class="col-6 mb-3">
+              <label for="telephone" class="mb-2">Téléphone</label>
+              <input type="text" class="form-control " style="height: 45px; border-radius:10px" name="telephone"  value="{{ rendezvous.users.telephone }}" disabled>
+          </div>
+
+            <div class="col-6 mb-3">
+              <label for="adresse" class="mb-2">Adresse</label>
+              <input type="text" class="form-control "  style="height: 45px; border-radius:10px" name="adresse"  value="{{ rendezvous.users.adresse }}" disabled>
+          </div>
+
+            <div class="col-6 mb-3">
+              <label for="consultations" class="mb-2">Type de consultation</label>
+              <input type="text" class="form-control "  style="height: 45px; border-radius:10px" name="consultationpatients"  value="{{ consultationpatients.consultations.libelle }}" disabled>
+          </div>
+
+            <div class="col-6 mb-3" >
+              <label for="consultatiopatients" class="mb-2">Observation</label>
+              <input type="text" class="form-control " style="height: 45px; border-radius:10px" name="consultationpatients"  value="{{ consultationpatients.observation }}" disabled>
+          </div>
+
+          
+            <div class="col-6 mb-3">
+              <label for="prescriptions" class="mb-2">Prescriptions</label>
+                <input type="text" class="form-control" style="height: 45px; border-radius: 10px" name="prescriptions" value="{{ prescriptions.medicament }}" disabled>
+            </div>
+
+            <div class="col-6 mb-3">
+              <label for="examens" class="mb-2">Type d'examen et résultat</label>
+                <input type="text" class="form-control" style="height: 45px; border-radius: 10px" name="examenpatients" value="{{ examens.type_examens.libelle }} , {{ examens.resultat }}" disabled>
+            </div>
+
+           
+
+          <div class="col-6 mb-3">
+            <a href="{% url 'rendezvous.liste_patients' %} " class="btn btn-danger">Retour</a>
+          </div>
+          
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+   
+{% endblock %}

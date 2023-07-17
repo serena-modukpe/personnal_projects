@@ -1,0 +1,28 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+
+{% block container %}
+<section>
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Editer un jour</h5>
+        <form action="{% url 'jours.update' jours.id %}" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" placeholder="" value="{{jours.date|date:'Y-m-d' }}">
+              </div>
+
+            <div class="">
+                <button class="btn btn-warning btn-sm">Modifier</button>
+            </div>
+           
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% load static %}
+{% block container %}
+<section class="section">
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Modifier un examen</h5>
+        <form action="{% url 'type_examens.update' type_examens.id %}" method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="libelle"><b>Libelle</b><i class='text-danger'>*</i></label>
+            <input type="text" class="form-control" id="libelle" name="libelle"  style="height: 45px; border-radius:10px" placeholder="" value="{{type_examens.libelle}}">
+          </div>
+          <div class="mb-3">
+              <label for="description"><b>Description</b><i class='text-danger'>*</i></label>
+              <textarea name="description" id="description" cols="10" rows="5" class="form-control"  style="height: 45px; border-radius:10px">{{ type_examens.description }}</textarea>
+            </div>
+            
+              <button class="btn btn-primary btn-sm">Editer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+  {% endblock %}

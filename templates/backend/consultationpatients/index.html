@@ -1,0 +1,63 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+{% block container %}
+
+   <section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Liste des Consultations : <a href="{% url 'consultationpatients.create' users.id patient.id %}" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> </a> <a href="{% url 'dossierpatients.dossier' users.id patient.id %}" class="btn btn-sm btn-danger"><i class="bi bi-arrow-return-left"></i> </a> </h5>
+          <table class="myTable table table-bordered table-responsive " id="table_personnes">
+            <thead>
+                <tr>
+                        <th scope="col">N</th>
+                        
+                        <th scope="col">Consultations</th>
+                        <th scope="col">Observation</th>
+                        <th scope="col">Nom et prénoms</th>
+                        <th scope="col">Date d'enregistrement</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in consultationpatients %}
+              <tr>
+                <td scope="row">{{ forloop.counter }}</td>
+                <td>{{ item.consultations.libelle }}</td>
+                <td>{{ item.observation}}</td>
+                <td>{{ item.dossierpatients.users.last_name}} {{ item.dossierpatients.users.first_name}}</td>
+                <td>{{ item.created_at }}</td>
+                
+                
+                
+              </tr>
+              
+              {% endfor %}
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+   </section>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script>
+   <script>
+    $(document).ready(function () {
+          if(window.navigator.language == 'fr-FR'){
+              var table = $('#table_personnes').DataTable({
+                  lengthMenu: [5,10],
+                  language: {
+                  url: "{% static 'assets_back/js/dataTablesFrench.js' %}"
+                  }
+              });
+          } else {
+              var table = $('#table_personnes').DataTable({
+                  lengthMenu: [5,10],
+              });
+          }
+      });
+  </script> 
+{% load sweetify %}
+{% sweetify %}
+    
+{% endblock %}

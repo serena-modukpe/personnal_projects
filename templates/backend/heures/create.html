@@ -1,0 +1,29 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+
+{% block container %}
+<!--p>Heure create</p-->
+<section>
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Ajouter un heure</h5>
+        <form action="{% url 'heures.store' %}" method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="heure"><b>Heure</b><i class='text-danger'>*</i></label>
+            <input type="time" class="form-control"   style="height: 45px; border-radius:10px" name="heure">
+          </div>
+          
+            <div class="mb-3">
+              <button class="btn btn-primary " >Enregistrer</button>
+              <a href="{% url 'heures.index' %}" class="btn btn-danger">Retour</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

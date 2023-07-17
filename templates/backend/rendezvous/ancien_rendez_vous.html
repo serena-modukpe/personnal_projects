@@ -1,0 +1,56 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+{% block container %}
+   <section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Liste de mes anciens rendez-vous</h5>
+          <table class="myTable table table-bordered table-responsive" id="table_rendezvous">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">N</th>
+                <th scope="col" class="text-center">Rendez-vous</th>
+                <th scope="col" class="text-center">Date</th>
+                <th scope="col" class="text-center">Heure</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in rendezvous %}
+              {% if item.users == user %}
+              
+              <tr>
+                <td scope="row" class="text-center">{{ forloop.counter }}</td>
+                <td class="text-center">{{ item.specialites.libelle }}</td>
+                <td class="text-center">{{ item.agendas.jours.date |date:"d-m-Y"}}</td>
+                <td class="text-center">{{ item.agendas.heures.heure }}</td>
+                
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+   </section>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script>
+  <script>
+   $(document).ready(function () {
+    if(window.navigator.language == 'fr-FR'){
+        var table = $('#table_rendezvous').DataTable({
+            lengthMenu: [5,10],
+            language: {
+            url: "{% static 'assets_back/js/dataTablesFrench.js' %}"
+            }
+        });
+    } else {
+        var table = $('#table_rendezvous').DataTable({
+            lengthMenu: [5,10],
+        });
+    }
+});
+</script>
+{% load sweetify %}
+{% sweetify %}
+{% endblock %}

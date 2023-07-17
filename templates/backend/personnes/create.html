@@ -1,0 +1,63 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+
+{% block container %}
+<section>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Ajouter une personne</h5>
+                <form action="{% url 'personnes.store' %}"  method="POST">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        
+                        <div class="col-6 mb-3" >
+                            <label for="nom" class="mb-2"><b>Nom</b><i class='text-danger'>*</i></label>
+                            <input type="text" class="form-control " style="height: 45px;border-radius:10px" name="nom">
+                        </div>
+                        <div class="col-6 mb-3" >
+                            <label for="prenom" class="mb-2"><b>Prénoms</b><i class='text-danger'>*</i></label>
+                            <input type="text" class="form-control " style="height: 45px; border-radius:10px" name="prenoms">
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label for="telephone" class="mb-2"><b>Téléphone</b><i class='text-danger'>*</i></label>
+                            <input type="text" class="form-control " style="height: 45px; border-radius:10px" name="telephone">
+                        </div>
+
+                        <div class="col-6 mb-2">
+                            <label for="date"><b>Date</b><i class='text-danger'>*</i></label>
+                            <input type="date" class="form-control" id="ddn" name="ddn">
+                          </div>
+
+                        <div class="col-6 mb-2">
+                            <label for="email" class="mb-2"><b>Email</b><i class='text-danger'>*</i></label>
+                            <input type="email" class="form-control "  style="height: 45px; border-radius:10px" name="email">
+                        </div>
+                       
+                        <div class="col-6 mb-2">
+                            <label for="adresse" class="mb-2"><b>Adresse</b><i class='text-danger'>*</i></label>
+                            <input type="text" class="form-control "  style="height: 45px; border-radius:10px" name="adresse">
+                        </div>
+
+                        <div class="col-md-8 mb-2">
+                            <label for="projet"><b>Utilisateurs</b><i class='text-danger'>*</i></label>
+                            <select name="users" id="users" class="form-control" required>
+                                <option value="">Selectionner un utilisateur</option>
+                                {% for item in users %}
+                                <option value="{{ item.id }}"> {{ item.last_name }}  {{ item.first_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-8 mb-2">
+                            <button class="btn btn-primary " type="submit" style="border-radius:10px" >Enregistrer</button>
+                            <a href="{% url 'personnes.index' %}" class="btn btn-danger">Retour</a>
+                        <div class="col-md-6 py-4">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

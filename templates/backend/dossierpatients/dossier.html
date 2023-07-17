@@ -1,0 +1,73 @@
+{% extends 'backend/incback/layout.html' %}
+{% block container%}
+<div>
+  <div class="card">
+    <h6 class="card-header fw-bold">Dossier de {{ patient.last_name }} {{ patient.first_name }}  </h6>
+  </div>
+</div>
+      <div class="row">
+          <div class="col-sm-4">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title"><span></span>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-clipboard2-pulse"></i>
+                    </div>
+                    <div class="ps-3">
+                      <a href="{% url 'consultationpatients.index' users.id patient.id dossierpatients.id %}" class="btn"><h6>Consultations</h6></a>
+                      
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-4">
+          <div class="card info-card revenue-card">
+            <div class="card-body">
+              <h5 class="card-title"> <span></span></h5>
+
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-clipboard2-pulse"></i>
+                </div>
+                <div class="ps-3">
+                  <a href="{% url 'examenpatients.index' users.id patient.id dossierpatients.id %}" class="btn btn-ligth"></i><h6>Examens</h6></a>
+                  
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-sm-4 ">
+          <div class="card info-card revenue-card">
+            <div class="card-body">
+              <h5 class="card-title"><span></span></h5>
+
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-clipboard2-pulse"></i>
+                </div>
+                <div class="ps-3">
+                  <a href="{% url 'prescriptions.index' users.id patient.id dossierpatients.id %}" class="btn btn-ligth"></i><h6>Prescriptions</h6></a>
+                  
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+  </div>
+
+
+  {% load sweetify %}
+  {% sweetify %}
+      
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'frontend/inc/layout.html' %}
+{% load static %}
+{% block container %}
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">Nos Tarifs </h1>
+                <a href="" class="h4 text-white">Accueil</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h4 text-white">Nos Tarifs</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+    <!-- Pricing Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <div class="section-title mb-4">
+                        <h5 class="position-relative d-inline-block text-primary text-uppercase">Nos Tarifs</h5>
+                        <h1 class="display-5 mb-0">Nous vous proposons des tarifs accessibles à tous</h1>
+                    </div>
+                    <p class="mb-4">Consultez un médecin à moindre coût grâce à nos tarifs</p>
+                    <h5 class="text-uppercase text-primary wow fadeInUp" data-wow-delay="0.3s">Appelez pour prendre un rendez-vous</h5>
+                    <h1 class="wow fadeInUp" data-wow-delay="0.6s">+229 97202353</h1>
+                </div>
+                <div class="col-lg-7">
+                    <div class="owl-carousel price-carousel wow zoomIn" data-wow-delay="0.9s">
+                        <div class="price-item pb-4 pt-4">
+                            <div class="position-relative">
+                                <img class="img-fluid rounded-top" src="{% static 'assets_front/img/price-1.webp' %}" alt="">
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
+                                    <h2 class="text-primary m-0">5000f</h2>
+                                </div>
+                            </div>
+                            <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4">
+                                <h4>Médecine Générale</h4>
+                                <hr class="text-primary w-50 mx-auto mt-0">
+                                <div class="d-flex justify-content-between mb-3"><span>Equipement moderne</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <div class="d-flex justify-content-between mb-3"><span>Professionnel</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <div class="d-flex justify-content-between mb-2"><span>24h/7jrs </span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <a href="{% url 'appointment' %}" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Rendez-vous</a>
+                            </div>
+                        </div>
+                        <div class="price-item pb-4 pt-4">
+                            <div class="position-relative">
+                                <img class="img-fluid rounded-top" src="{% static 'assets_front/img/price-2.webp' %}" alt="">
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
+                                    <h2 class="text-primary m-0">10000f</h2>
+                                </div>
+                            </div>
+                            <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4">
+                                <h4>Chirugie</h4>
+                                <hr class="text-primary w-50 mx-auto mt-0">
+                                <div class="d-flex justify-content-between mb-3"><span> Equipement moderne</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <div class="d-flex justify-content-between mb-3"><span>Professionnel</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <div class="d-flex justify-content-between mb-2"><span>24h/7jrs</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <a href="{% url 'appointment' %}" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Rendez-vous</a>
+                            </div>
+                        </div>
+                        <div class="price-item pb-4 pt-4">
+                            <div class="position-relative">
+                                <img class="img-fluid rounded-top" src="{% static 'assets_front/img/price-3.webp' %}" alt="">
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
+                                    <h2 class="text-primary m-0">5000f</h2>
+                                </div>
+                            </div>
+                            <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4">
+                                <h4>Consultez un dentiste</h4>
+                                <hr class="text-primary w-50 mx-auto mt-0">
+                                <div class="d-flex justify-content-between mb-3"><span>Equipement moderne</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <div class="d-flex justify-content-between mb-3"><span>Professionnel</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <div class="d-flex justify-content-between mb-2"><span>24h/7jrs</span><i class="fa fa-check text-primary pt-1"></i></div>
+                                <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Rendez-vous</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pricing End -->
+    
+
+    <!-- Newsletter Start -->
+    <div class="container-fluid position-relative pt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1;">
+        <div class="container">
+            <div class="bg-primary p-5">
+                <form class="mx-auto" style="max-width: 600px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-white p-3" placeholder="Votre Email">
+                        <button class="btn btn-dark px-4">S'inscrire</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Newsletter End -->
+
+    {% endblock %}
+   

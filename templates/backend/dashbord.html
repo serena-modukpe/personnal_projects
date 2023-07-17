@@ -1,0 +1,84 @@
+{% extends 'backend/incback/layout.html' %}
+{% load static %}
+
+{% block container %}
+
+<!-- Start main -->
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12 ">
+          <div class="row">   
+
+            <!-- Sales Card -->
+            <div class="col-xxl-4 col-md-4 ">
+              <div class="card info-card sales-card">
+
+                
+
+                <div class="card-body">
+                  <h5 class="card-title">Utilisateurs <span></span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ users }}</h6>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+            <!-- Revenue Card -->
+            <div class="col-xxl-4 col-md-4">
+              <div class="card info-card revenue-card">
+
+
+                <div class="card-body">
+                  <h5 class="card-title">Nombre médecins <span></span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person-fill"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ medecins }}</h6>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+
+            <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-4 ">
+
+              <div class="card info-card customers-card">
+
+               
+                <div class="card-body">
+                  <h5 class="card-title">Nombre patients <span></span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ patients }}</h6>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div><!-- End Customers Card -->
+
+           
+      </div>
+{% endblock %}

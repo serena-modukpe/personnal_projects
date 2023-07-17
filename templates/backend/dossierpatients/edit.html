@@ -1,0 +1,48 @@
+{% extends 'backend/incback/layout.html' %}
+
+{% block container %}
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Modifier dossier patient</h2>
+        <form action="{% url 'dossierpatients.update' dossierpatients.id %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numero">Numero</label>
+                            <input type="text" name="numero" id="numero" class="form-control" value="{{ dossierpatients.numero }}" required>
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="personnes">Personnes</label>
+                            <select name="personnes" class="form-control">
+                                <optgroup label="Personnes">
+                                    <option value="{{ dossierpatients.personnes.id }}">{{ dossierpatients.personnes.nom }} {{ dossierpatients.personnes.prenoms }}</option>
+                                </optgroup>
+                                <optgroup label="Valeurs disponibles">
+                                    {% for item in personnes %}
+                                    <option value="{{ item.id }}">{{ item.nom }} {{ item.prenoms }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div><br/>
+
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <button class="btn btn-primary">Modifier</button>
+                        <a href="{% url 'dossierpatients.index' %}" class="btn btn-success">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
